@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.firebasephoneauthentication.fragment.CallsFragment;
+import com.example.firebasephoneauthentication.fragment.StatusFragment;
+import com.example.firebasephoneauthentication.fragment.ChatFragment;
+
 public class MyAdapter extends FragmentPagerAdapter {
 
     private Context myContext;
@@ -22,10 +26,15 @@ public class MyAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-
+                ChatFragment chatFragment = new ChatFragment();
+                return chatFragment;
             case 1:
+                StatusFragment statusFragment = new StatusFragment();
+                return statusFragment;
 
             case 2:
+                CallsFragment callsFragment = new CallsFragment();
+                return callsFragment;
 
             default:
                 return null;

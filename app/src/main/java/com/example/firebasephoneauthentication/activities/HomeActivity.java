@@ -20,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         tabLayout.addTab(tabLayout.newTab().setText("CHATS"));
         tabLayout.addTab(tabLayout.newTab().setText("STATUS"));
