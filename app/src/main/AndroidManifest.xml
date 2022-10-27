@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebasePhoneAuthentication">
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyCodeActivity"
+            android:name=".activities.VerifyCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

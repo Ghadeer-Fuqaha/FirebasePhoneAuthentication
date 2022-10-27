@@ -1,4 +1,4 @@
-package com.example.firebasephoneauthentication;
+package com.example.firebasephoneauthentication.activities;
 
 import static android.content.ContentValues.TAG;
 
@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+
+import com.example.firebasephoneauthentication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -120,7 +122,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             //verification successful we will start the profile activity
-                            Intent intent = new Intent(VerifyCodeActivity.this, ProfileActivity.class);
+                            Intent intent = new Intent(VerifyCodeActivity.this, HomeActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
