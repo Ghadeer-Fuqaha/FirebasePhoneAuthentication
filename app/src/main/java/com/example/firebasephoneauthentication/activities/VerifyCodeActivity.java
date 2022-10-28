@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
     // [END declare_auth]
 
     TextInputLayout InputVerifyCode;
+    String phone;
   //  private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
         InputVerifyCode = (TextInputLayout) findViewById(R.id.TextInputCodeLayout);
         mAuth = FirebaseAuth.getInstance();
 
-        String phone = intent.getStringExtra("mobile");
+         phone = intent.getStringExtra("mobile");
         startPhoneNumberVerification(phone);
 
     }//End onCreate method
@@ -80,9 +82,21 @@ public class VerifyCodeActivity extends AppCompatActivity {
 
             if (code != null) {
                 InputVerifyCode.getEditText().setText(code);
-                //verifying the code
-                verifyVerificationCode(code);
+
+
+            }else{
+
+                InputVerifyCode.getEditText().setFocusable(true);
+                InputVerifyCode.setError("Enter the verification code that you received:");
+
+                if(!InputVerifyCode.getEditText().getText().toString().trim().isEmpty()){
+                    InputVerifyCode.getEditText().setFocusable(false);
+                    code = InputVerifyCode.getEditText().getText().toString().trim();
+                }
             }
+
+            //verifying the code
+            verifyVerificationCode(code);
 
         }
 
@@ -90,6 +104,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
         public void onVerificationFailed(@NonNull FirebaseException e) {
 
             Toast.makeText(VerifyCodeActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.d("Failed Verification--> ",e.getMessage());
 
         }
 
@@ -122,7 +137,8 @@ public class VerifyCodeActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             //verification successful we will start the profile activity
-                            Intent intent = new Intent(VerifyCodeActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(VerifyCodeActivity.this, setProfileInfo.class);
+                            intent.putExtra("phone",phone);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
@@ -131,7 +147,7 @@ public class VerifyCodeActivity extends AppCompatActivity {
                             Log.d(TAG, "onVerificationFailed" + credential);
                             //verification unsuccessful.. display an error message
 
-                            String message = "Somthing is wrong, we will fix it soon...";
+                            String message = "Something is wrong, we will fix it soon...";
 
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 message = "Invalid code entered...";
