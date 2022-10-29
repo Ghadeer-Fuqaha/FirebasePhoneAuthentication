@@ -6,6 +6,9 @@ public class User {
     String UserName;
     String Status;
 
+    public User() {
+    }
+
     public User(String phone, String userName, String status) {
         this.phone = phone;
         UserName = userName;

@@ -10,6 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebasePhoneAuthentication">
         <activity
+            android:name=".Settings"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ViewProfile"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".setProfileInfo"
             android:exported="false">
             <meta-data
@@ -59,7 +73,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.setProfileInfo"
+        <activity
+            android:name=".activities.setProfileInfo"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ViewContacts"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ViewProfile"
+            android:exported="false" />
+
+        <activity android:name=".activities.Settings"
             android:exported="false"/>
     </application>
 
